@@ -159,13 +159,13 @@ export function ModelSelection() {
             <TabsTrigger value="cloud" className="flex-1">
               Cloud
             </TabsTrigger>
-            <TabsTrigger
+            {/* <TabsTrigger
               value="local"
               disabled={!env.NEXT_PUBLIC_LOCAL_MODE_ENABLED}
               className="flex-1 disabled:opacity-50"
             >
               Local
-            </TabsTrigger>
+            </TabsTrigger> */}
           </TabsList>
           <TabsContent value="cloud" className="w-full">
             <SelectGroup className="w-full">
@@ -174,13 +174,13 @@ export function ModelSelection() {
               ))}
             </SelectGroup>
           </TabsContent>
-          <TabsContent value="local" className="w-full">
+          {/* <TabsContent value="local" className="w-full">
             <SelectGroup className="w-full">
               {Object.values(localModelMap).map((model) => (
                 <ModelItem key={model.value} model={model} />
               ))}
             </SelectGroup>
-          </TabsContent>
+          </TabsContent> */}
         </Tabs>
       </SelectContent>
     </Select>
