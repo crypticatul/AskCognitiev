@@ -17,8 +17,8 @@ const mono = Mono({
   variable: "--font-mono",
 });
 
-const title = "Farfalle";
-const description = "Open-source AI powered answer engine.";
+const title = "AskAI";
+const description = "PExpert AI Search powered by Cognitiev.com 🧠";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://farfalle.dev/"),
