@@ -16,17 +16,13 @@ import {
   FlameIcon,
   Rabbit,
   RabbitIcon,
-  SettingsIcon,
   SparklesIcon,
   WandSparklesIcon,
 } from "lucide-react";
-import { useConfigStore, useChatStore } from "@/stores";
+import { useConfigStore, useMessageStore } from "@/stores";
 import { ChatModel } from "../../generated";
 import { isCloudModel, isLocalModel } from "@/lib/utils";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-
 import _ from "lodash";
-import { env } from "@/env.mjs";
 
 type Model = {
   name: string;
@@ -36,16 +32,16 @@ type Model = {
   icon: React.ReactNode;
 };
 
-export const modelMap: Record<ChatModel, Model> = {
-  [ChatModel.GPT_4O_MINI]: {
-    name: "Fast",
-    description: "OpenAI/GPT-4o-mini",
-    value: ChatModel.GPT_4O_MINI,
+const modelMap: Record<ChatModel, Model> = {
+  [ChatModel.GPT_3_5_TURBO]: {
+    name: "Fast (UNAVAILABLE)",
+    description: "OpenAI/GPT-3.5-turbo",
+    value: ChatModel.GPT_3_5_TURBO,
     smallIcon: <RabbitIcon className="w-4 h-4 text-cyan-500" />,
     icon: <RabbitIcon className="w-5 h-5 text-cyan-500" />,
   },
   [ChatModel.GPT_4O]: {
-    name: "Powerful",
+    name: "Powerful (UNAVAILABLE)",
     description: "OpenAI/GPT-4o",
     value: ChatModel.GPT_4O,
     smallIcon: <BrainIcon className="w-4 h-4 text-pink-500" />,
@@ -60,7 +56,7 @@ export const modelMap: Record<ChatModel, Model> = {
   },
   [ChatModel.LLAMA3]: {
     name: "Llama3",
-    description: "ollama/llama3.1",
+    description: "ollama/llama3",
     value: ChatModel.LLAMA3,
     smallIcon: <WandSparklesIcon className="w-4 h-4 text-purple-500" />,
     icon: <WandSparklesIcon className="w-5 h-5 text-purple-500" />,
@@ -79,19 +75,12 @@ export const modelMap: Record<ChatModel, Model> = {
     smallIcon: <AtomIcon className="w-4 h-4 text-[#FF7000]" />,
     icon: <AtomIcon className="w-5 h-5 text-[#FF7000]" />,
   },
-  [ChatModel.PHI3_14B]: {
+  [ChatModel.LOCAL_PHI3_14B]: {
     name: "Phi3",
     description: "ollama/phi3:14b",
-    value: ChatModel.PHI3_14B,
+    value: ChatModel.LOCAL_PHI3_14B,
     smallIcon: <FlameIcon className="w-4 h-4 text-green-500" />,
     icon: <FlameIcon className="w-5 h-5 text-green-500" />,
-  },
-  [ChatModel.CUSTOM]: {
-    name: "Custom",
-    description: "Custom model",
-    value: ChatModel.CUSTOM,
-    smallIcon: <SettingsIcon className="w-4 h-4 text-red-500" />,
-    icon: <SettingsIcon className="w-5 h-5 text-red-500" />,
   },
 };
 
@@ -122,8 +111,7 @@ const ModelItem: React.FC<{ model: Model }> = ({ model }) => (
 );
 
 export function ModelSelection() {
-  const { localMode, model, setModel, toggleLocalMode } = useConfigStore();
-  const selectedModel = modelMap[model] ?? modelMap[ChatModel.GPT_4O_MINI];
+  const { model, setModel, localMode } = useConfigStore();
 
   return (
     <Select
@@ -138,50 +126,19 @@ export function ModelSelection() {
       <SelectTrigger className="w-fit space-x-2 bg-transparent outline-none border-none select-none focus:ring-0 shadow-none transition-all duration-200 ease-in-out hover:scale-[1.05] text-sm">
         <SelectValue>
           <div className="flex items-center space-x-2">
-            {selectedModel.smallIcon}
-            <span className="font-semibold">{selectedModel.name}</span>
+            {modelMap[model].smallIcon}
+            <span className="font-semibold">{modelMap[model].name}</span>
           </div>
         </SelectValue>
       </SelectTrigger>
       <SelectContent className="w-[250px]">
-        <Tabs
-          className="w-full"
-          defaultValue={localMode ? "local" : "cloud"}
-          onValueChange={(value) => {
-            if (value === "local" && !localMode) {
-              toggleLocalMode();
-            } else if (value === "cloud" && localMode) {
-              toggleLocalMode();
-            }
-          }}
-        >
-          <TabsList className="w-full">
-            <TabsTrigger value="cloud" className="flex-1">
-              Cloud
-            </TabsTrigger>
-            <TabsTrigger
-              value="local"
-              disabled={!env.NEXT_PUBLIC_LOCAL_MODE_ENABLED}
-              className="flex-1 disabled:opacity-50"
-            >
-              Local
-            </TabsTrigger>
-          </TabsList>
-          <TabsContent value="cloud" className="w-full">
-            <SelectGroup className="w-full">
-              {Object.values(cloudModelMap).map((model) => (
-                <ModelItem key={model.value} model={model} />
-              ))}
-            </SelectGroup>
-          </TabsContent>
-          <TabsContent value="local" className="w-full">
-            <SelectGroup className="w-full">
-              {Object.values(localModelMap).map((model) => (
-                <ModelItem key={model.value} model={model} />
-              ))}
-            </SelectGroup>
-          </TabsContent>
-        </Tabs>
+        <SelectGroup>
+          {Object.values(localMode ? localModelMap : cloudModelMap).map(
+            (model) => (
+              <ModelItem key={model.value} model={model} />
+            ),
+          )}
+        </SelectGroup>
       </SelectContent>
     </Select>
   );
