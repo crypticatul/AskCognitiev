@@ -21,7 +21,7 @@ const title = "AskAI";
 const description = "PExpert AI Search powered by Cognitiev.com 🧠";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://farfalle.dev/"),
+  metadataBase: new URL("https://ask.cognitiev.com/"),
   title,
   description,
   openGraph: {

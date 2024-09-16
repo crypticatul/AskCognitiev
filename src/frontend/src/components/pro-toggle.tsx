@@ -52,19 +52,19 @@ const ProToggle = () => {
           <div className="text-sm gap-y-1 flex flex-col ">
             <div>
               Expert mode will create a plan to answer your question to make the
-              answer more accurate.
+              result more accurate.
             </div>
           </div>
           <Separator className="mt-1" />
           <div className="text-xs text-muted-foreground mt-2">
-            <span>Requires self-hosted setup. </span>
+          <span>Powered by. </span>
             <a
               className="text-primary hover:underline"
-              href="https://github.com/rashadphz/farfalle/"
+              href="https://cognitiev.com/"
               target="_blank"
               rel="noreferrer"
             >
-              Learn more
+              Cognitiev PRO
             </a>
           </div>
         </div>
