@@ -5,7 +5,7 @@ const starterQuestions = [
   "What is Cognitiev PRO?",
   "Tussle between openai and scarlett johansson?",
   "How is groq different?",
-  "iPhone 16 Review"
+  "iPhone 16 Review",
   "What happened to ilya?",
 ];
 
