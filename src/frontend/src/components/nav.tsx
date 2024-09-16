@@ -4,7 +4,7 @@ import Link from "next/link";
 import { ModeToggle } from "./mode-toggle";
 import { useTheme } from "next-themes";
 import { Button } from "./ui/button";
-import { HistoryIcon, PlusIcon } from "lucide-react";
+import { PlusIcon } from "lucide-react"; // Removed HistoryIcon import
 import { useChatStore } from "@/stores";
 import { useRouter } from "next/navigation";
 
@@ -41,14 +41,7 @@ export function Navbar() {
         {onHomePage ? <TextLogo /> : <NewChatButton />}
       </div>
       <div className="flex items-center gap-4">
-        <Link href="/history" passHref>
-          <div className="font-medium hover:underline decoration-tint underline-offset-4 transition-all duration-200 ease-in-out transform hover:scale-[1.02] text-left break-words normal-case">
-            <div className="flex items-center gap-2">
-              <HistoryIcon className="w-4 h-4" />
-              History
-            </div>
-          </div>
-        </Link>
+        {/* Removed History button */}
         <ModeToggle />
       </div>
     </header>
