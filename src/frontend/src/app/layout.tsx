@@ -18,7 +18,7 @@ const mono = Mono({
 });
 
 const title = "AskAI";
-const description = "PExpert AI Search powered by Cognitiev.com 🧠";
+const description = "Expert AI Search powered by Cognitiev.com 🧠";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ask.cognitiev.com/"),

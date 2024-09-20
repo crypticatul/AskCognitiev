@@ -3,6 +3,9 @@ import { ArrowUpRight } from "lucide-react";
 const starterQuestions = [
   "Difference between AI search and general Search engines?",
   "What is Cognitiev PRO?",
+  "What is dr.cognitiev.com?",
+  "What is Cognitiev PRO?",
+  "What about atul.cognitiev.com?",
   "Tussle between openai and scarlett johansson?",
   "How is groq different?",
   "iPhone 16 Review",
