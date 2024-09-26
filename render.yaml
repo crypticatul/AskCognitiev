@@ -1,11 +1,17 @@
 services:
   - type: web
-    name: farfalle
+    name: AskCognitiev🧠
     runtime: python
-    repo: https://github.com/rashadphz/farfalle
+    repo: https://github.com/crypticatul/AskCognitiev
     plan: free
     envVars:
       - key: TAVILY_API_KEY
+        sync: false
+      - key: SEARCH_PROVIDER
+        sync: false
+      - key: BING_API_KEY
+        sync: false
+        key: AZURE_API_BASE
         sync: false
       - key: OPENAI_API_KEY
         sync: false
