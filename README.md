@@ -40,6 +40,10 @@ Run your local LLM (**llama3**, **gemma**, **mistral**, **phi3**) or use  cloud 
 - Answer questions with any custom LLMs through [LiteLLM](https://litellm.vercel.app/docs/providers)
 - Search with an agent that plans and executes the search for better results
 
+## 1-Click Cloud Deploy
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/crypticatul/askcognitiev)
+
 ## 🏃🏿‍♂️ Getting Started Locally
 
 ### Prerequisites
